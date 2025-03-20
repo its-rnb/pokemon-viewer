@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
 
