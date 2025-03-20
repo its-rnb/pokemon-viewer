@@ -104,10 +104,25 @@ const fetchPokemonTypes = async () => {
     }
   };
 
-  const handleSearch = (event) => {
-    const searchValue = event.target.value;
-    setSearchTerm(searchValue);
-    applyFilters(searchValue, selectedType, sortType);
+  const handleSearch = async (event) => {
+    if (event.key === "Enter" || event.type === "click") {
+      if (!searchTerm.trim()) {
+        fetchPokemonList();
+        return;
+      }
+      
+      setLoading(true);
+      try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchTerm.toLowerCase()}`);
+        setFilteredList([response.data]);
+        setMaxPages(1);
+      } catch (err) {
+        setFilteredList([]);
+        setError("No Pokémon found.");
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   const handleSortChange = (event) => {
@@ -161,7 +176,8 @@ const fetchPokemonTypes = async () => {
           type="text"
           placeholder="Type Pokémon..."
           value={searchTerm}
-          onChange={handleSearch}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleSearch}
           className="border p-2 rounded"
         />
 
