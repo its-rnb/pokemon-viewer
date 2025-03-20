@@ -1,0 +1,25 @@
+#search-page{
+    background-color: rgb(39, 39, 39);
+}
+
+#motion-div{
+    background-color: black;
+    border-radius: 5px;
+}
+
+#input-search{
+    color: black;
+}
+
+#search-btn{
+    background-color: rgb(0, 121, 0);
+}
+
+#input-search, #search-btn{
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+#poke-img{
+    background-color: burlywood;
+}
